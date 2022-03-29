@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./app"; // Import root component
 import "@fortawesome/fontawesome-free/js/all.js"; // Import libraries
 
+console.clear();
 ReactDOM.render(
   <React.StrictMode>
     <App />

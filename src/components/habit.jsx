@@ -1,26 +1,16 @@
 import React, { Component } from "react";
 
 class Habit extends Component {
-  state = {
-    count: 0,
-  }; // Statement
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  handleDecrement = () => {
-    // this.state.count > 0 && this.setState({ count: this.state.count - 1 });
-    const count = this.state.count;
-    this.setState({ count: count > 0 ? count - 1 : count });
-  };
+  handleIncrement = () => this.props.onIncrement(this.props.habit); // 부모의 함수 호출
+  handleDecrement = () => this.props.onDecrement(this.props.habit);
+  handleDelete = () => this.props.onDelete(this.props.habit);
 
   render() {
-    // console.log(this.props.title);
+    const { title, count } = this.props.habit; // 전달 받은 데이터
     return (
       <li className="habit">
-        <span className="habit-name">Reading</span>
-        <span className="habit-count">{this.state.count}</span>
+        <span className="habit-name">{title}</span>
+        <span className="habit-count">{count}</span>
         <button
           className="habit-button habit-increase"
           onClick={this.handleIncrement}
@@ -33,7 +23,10 @@ class Habit extends Component {
         >
           <i className="fa-solid fa-minus"></i>
         </button>
-        <button className="habit-button habit-delete">
+        <button
+          className="habit-button habit-delete"
+          onClick={this.handleDelete}
+        >
           <i className="fa-solid fa-delete-left"></i>
         </button>
       </li>

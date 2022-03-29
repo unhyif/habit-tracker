@@ -5,9 +5,13 @@ button {
   font: inherit;
 }
 
-.habit {
+.habits {
+  padding: 0;
   list-style: none;
   font-size: 2.5rem;
+}
+
+.habit {
   padding: 1rem;
 }
 
