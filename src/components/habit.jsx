@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Habit extends Component {
-  handleIncrement = () => this.props.onIncrement(this.props.habit); // 부모의 함수 호출
+  handleIncrement = () => this.props.onIncrement(this.props.habit);
   handleDecrement = () => this.props.onDecrement(this.props.habit);
   handleDelete = () => this.props.onDelete(this.props.habit);
 

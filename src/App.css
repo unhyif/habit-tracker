@@ -5,6 +5,11 @@ button {
   font: inherit;
 }
 
+.habit-header {
+  display: flex;
+  align-items: center;
+}
+
 .habits {
   padding: 0;
   list-style: none;
