@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./app.css";
 import Habits from "./components/habits"; // Import child components
+import Header from "./components/header";
 
 class App extends Component {
   state = {
@@ -10,9 +11,6 @@ class App extends Component {
       { id: 3, title: "Coding", count: 0 },
     ],
   };
-
-  getTotalCount = () =>
-    this.state.habits.reduce((prev, curr) => prev + curr.count, 0);
 
   handleIncrement = (habit) => {
     // habit.count++;
@@ -38,9 +36,9 @@ class App extends Component {
 
   handlers = {
     // REVIEW
-    handleIncrement: this.handleIncrement,
-    handleDecrement: this.handleDecrement,
-    handleDelete: this.handleDelete,
+    onIncrement: this.handleIncrement,
+    onDecrement: this.handleDecrement,
+    onDelete: this.handleDelete,
   };
 
   handleAdd = () => {
@@ -66,16 +64,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <header className="habit-header">
-          <h1 className="habit-title">Habit Tracker</h1>
-          <span className="habit-totalCount">{this.getTotalCount()}</span>
-        </header>
-        <div>
-          <input type="text" className="habit-input" placeholder="Habit" />
-          <button className="habit-add" onClick={this.handleAdd}>
-            Add
-          </button>
-        </div>
+        {/* 간단한 함수는 안 넘겨줘도 됨 */}
+        <Header
+          totalCount={this.state.habits.filter((item) => item.count > 0).length}
+        />
+        <input type="text" className="habit-input" placeholder="Habit" />
+        <button className="habit-add" onClick={this.handleAdd}>
+          Add
+        </button>
         <Habits habits={this.state.habits} handlers={this.handlers} />
         <button className="habit-reset" onClick={this.handleReset}>
           Reset All
