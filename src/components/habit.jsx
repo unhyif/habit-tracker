@@ -1,33 +1,36 @@
 import React, { Component } from "react";
 
 class Habit extends Component {
-  handleIncrement = () => this.props.onIncrement(this.props.habit); // 부모의 함수 호출
-  handleDecrement = () => this.props.onDecrement(this.props.habit);
-  handleDelete = () => this.props.onDelete(this.props.habit);
-
+  // 버튼 클릭 -> Habits의 prop 변화로 인해 re-render
   render() {
-    const { title, count } = this.props.habit; // 전달 받은 데이터
+    // REVIEW: 변수, 함수 위치
+    const {
+      habit,
+      onUpdate: handleUpdate,
+      onDelete: handleDelete,
+    } = this.props; // count 값이 갱신돼야 하므로 render 안에서 habit을 받아와야 함
+
     return (
       <li className="habit">
-        <span className="habit-name">{title}</span>
-        <span className="habit-count">{count}</span>
+        <span className="habit-title">{habit.title}</span>
+        <span className="habit-count">{habit.count}</span>
         <button
           className="habit-button habit-increase"
-          onClick={this.handleIncrement}
+          onClick={() => handleUpdate(habit, true)} // REVIEW: 콜백
         >
-          <i className="fa-solid fa-plus"></i>
+          +
         </button>
         <button
           className="habit-button habit-decrease"
-          onClick={this.handleDecrement}
+          onClick={() => handleUpdate(habit, false)}
         >
-          <i className="fa-solid fa-minus"></i>
+          -
         </button>
         <button
           className="habit-button habit-delete"
-          onClick={this.handleDelete}
+          onClick={() => handleDelete(habit)}
         >
-          <i className="fa-solid fa-delete-left"></i>
+          X
         </button>
       </li>
     );

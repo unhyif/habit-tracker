@@ -1,10 +1,9 @@
 import React from "react";
 import "./app.css";
-import Habits from "./components/habits"; // Import child components
+import Habits from "./components/habits";
 
 function App() {
-  // Parent component
-  return <Habits />; // Child component
+  return <Habits />;
 }
 
 export default App;
