@@ -11,8 +11,8 @@ class Habits extends Component {
   };
 
   // REVIEW: 화살표 함수로 메소드
-  handleUpdate = (inputHabit, add) => {
-    if (add) inputHabit.count++;
+  handleUpdate = (inputHabit, increment) => {
+    if (increment) inputHabit.count++;
     else {
       inputHabit.count && inputHabit.count--;
     }
@@ -35,18 +35,16 @@ class Habits extends Component {
   };
 
   render() {
-    return (
-      <ul className="habits">
-        {this.state.habits.map((habit) => (
-          <Habit
-            key={habit.id}
-            habit={habit}
-            onUpdate={this.handleUpdate}
-            onDelete={this.handleDelete}
-          />
-        ))}
-      </ul>
-    );
+    const habitItems = this.state.habits.map((habit) => (
+      <Habit
+        key={habit.id}
+        habit={habit}
+        onUpdate={this.handleUpdate}
+        onDelete={this.handleDelete}
+      />
+    ));
+
+    return <ul className="habits">{habitItems}</ul>;
   }
 }
 
