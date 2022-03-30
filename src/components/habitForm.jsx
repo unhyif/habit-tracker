@@ -6,7 +6,7 @@ class HabitForm extends Component {
     e.preventDefault();
     this.props.onAdd(this.inputRef.current.value);
     this.inputRef.current.value = "";
-    // this.formRef.current.reset()
+    // this.formRef.current.reset() // e.target.reset()
   };
 
   render() {

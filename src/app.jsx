@@ -35,11 +35,19 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  handleReset = () => {
+    const habits = [...this.state.habits]; // REVIEW: map 콜백 함수는 expression return해야 함
+    habits.forEach((item) => (item.count = 0));
+    this.setState({ habits });
+    // this.setState({ habits: [] }); // 목록도 리셋
+  };
+
   handlers = {
     // REVIEW
     onIncrement: this.handleIncrement,
     onDecrement: this.handleDecrement,
     onDelete: this.handleDelete,
+    onReset: this.handleReset,
   };
 
   handleAdd = (title) => {
@@ -54,13 +62,6 @@ class App extends Component {
     this.setState({ habits });
   };
 
-  handleReset = () => {
-    const habits = [...this.state.habits]; // REVIEW: map 콜백 함수는 expression return해야 함
-    habits.forEach((item) => (item.count = 0));
-    this.setState({ habits });
-    // this.setState({ habits: [] }); // 목록도 리셋
-  };
-
   render() {
     return (
       <>
@@ -70,9 +71,6 @@ class App extends Component {
         />
         <HabitForm onAdd={this.handleAdd} />
         <Habits habits={this.state.habits} handlers={this.handlers} />
-        <button className="habit-reset" onClick={this.handleReset}>
-          Reset All
-        </button>
       </>
     );
   }
