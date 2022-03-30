@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./app.css";
 import Habits from "./components/habits"; // Import child components
 import Header from "./components/header";
+import HabitForm from "./components/habitForm";
 
 class App extends Component {
   state = {
@@ -41,17 +42,16 @@ class App extends Component {
     onDelete: this.handleDelete,
   };
 
-  handleAdd = () => {
-    const input = document.querySelector(".habit-input");
-    const habits = [...this.state.habits];
-    // push returns number
-    habits.push({
-      id: this.state.habits.length + 1,
-      title: input.value,
-      count: 0,
-    });
+  handleAdd = (title) => {
+    const habits = [
+      ...this.state.habits,
+      {
+        id: this.state.habits.length + 1,
+        title, // 생략 가능
+        count: 0,
+      },
+    ];
     this.setState({ habits });
-    input.value = "";
   };
 
   handleReset = () => {
@@ -68,10 +68,7 @@ class App extends Component {
         <Header
           totalCount={this.state.habits.filter((item) => item.count > 0).length}
         />
-        <input type="text" className="habit-input" placeholder="Habit" />
-        <button className="habit-add" onClick={this.handleAdd}>
-          Add
-        </button>
+        <HabitForm onAdd={this.handleAdd} />
         <Habits habits={this.state.habits} handlers={this.handlers} />
         <button className="habit-reset" onClick={this.handleReset}>
           Reset All
@@ -82,3 +79,17 @@ class App extends Component {
 }
 
 export default App;
+
+// class Foo extends React.Component {
+//   handleClick(event) {
+//     console.log(this);
+//   }
+
+//   render() {
+//     return (
+//       <button type="button" onClick={(e) => this.handleClick(e)}>
+//         Click Me
+//       </button>
+//     );
+//   }
+// }

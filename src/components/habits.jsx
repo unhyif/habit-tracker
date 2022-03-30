@@ -7,14 +7,13 @@ class Habits extends Component {
   // handleDelete = this.props.handlers.handleDelete;
 
   render() {
-    const { onIncrement, onDecrement, onDelete } = this.props.handlers;
     const habits = this.props.habits.map((item) => (
       <Habit
         key={item.id}
         habit={item}
-        onIncrement={onIncrement}
-        onDecrement={onDecrement}
-        onDelete={onDelete}
+        onIncrement={this.props.handlers.onIncrement}
+        onDecrement={this.props.handlers.onDecrement}
+        onDelete={this.props.handlers.onDelete}
       /> /* 각 habit 데이터/콜백 함수를 Habit 컴포넌트에 연결/전달 */
     ));
 
