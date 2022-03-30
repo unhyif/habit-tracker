@@ -6,11 +6,11 @@ class Habit extends PureComponent {
   handleDelete = () => this.props.onDelete(this.props.habit);
 
   render() {
-    const { title } = this.props.habit; // 전달 받은 데이터
+    const { title, count } = this.props.habit; // 전달 받은 데이터
     return (
       <li className="habit">
         <span className="habit-name">{title}</span>
-        <span className="habit-count">{this.props.count}</span>
+        <span className="habit-count">{count}</span>
         <button
           className="habit-button habit-increase"
           onClick={this.handleIncrement}
