@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class HabitForm extends Component {
+class HabitForm extends PureComponent {
   inputRef = React.createRef(); // React element와 연결, DOM 오브젝트 직접 접근 X
   onSubmit = (e) => {
     e.preventDefault();

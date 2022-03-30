@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Habit extends Component {
+class Habit extends PureComponent {
   handleIncrement = () => this.props.onIncrement(this.props.habit);
   handleDecrement = () => this.props.onDecrement(this.props.habit);
   handleDelete = () => this.props.onDelete(this.props.habit);
 
   render() {
-    const { title, count } = this.props.habit; // 전달 받은 데이터
+    const { title } = this.props.habit; // 전달 받은 데이터
     return (
       <li className="habit">
         <span className="habit-name">{title}</span>
-        <span className="habit-count">{count}</span>
+        <span className="habit-count">{this.props.count}</span>
         <button
           className="habit-button habit-increase"
           onClick={this.handleIncrement}
