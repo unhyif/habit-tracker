@@ -2,49 +2,25 @@ import React, { Component } from "react";
 import Habit from "./habit";
 
 class Habits extends Component {
-  state = {
-    habits: [
-      { id: 1, title: "Coding", count: 0 },
-      { id: 2, title: "Exercise", count: 0 },
-      { id: 3, title: "English", count: 0 },
-    ],
-  };
-
-  // REVIEW: 화살표 함수로 메소드
-  handleUpdate = (inputHabit, increment) => {
-    if (increment) inputHabit.count++;
-    else {
-      inputHabit.count && inputHabit.count--;
-    }
-
-    // REVIEW: 요소가 수정된 배열 얻는 방법
-    const newHabits = {
-      habits: this.state.habits
-        .filter((habit) => habit.id !== inputHabit.id)
-        .concat(inputHabit)
-        .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)),
-    };
-    this.setState(newHabits);
-  };
-
-  handleDelete = (inputHabit) => {
-    const newHabits = {
-      habits: this.state.habits.filter((habit) => habit.id !== inputHabit.id),
-    };
-    this.setState(newHabits);
-  };
-
   render() {
-    const habitItems = this.state.habits.map((habit) => (
+    const habits = this.props.habits.map((item) => (
       <Habit
-        key={habit.id}
-        habit={habit}
-        onUpdate={this.handleUpdate}
-        onDelete={this.handleDelete}
+        key={item.id}
+        habit={item}
+        onIncrement={this.props.onIncrement}
+        onDecrement={this.props.onDecrement}
+        onDelete={this.props.onDelete}
       />
     ));
 
-    return <ul className="habits">{habitItems}</ul>;
+    return (
+      <>
+        <ul className="habits">{habits}</ul>
+        <button className="btn resetBtn" onClick={this.props.onReset}>
+          Reset
+        </button>
+      </>
+    );
   }
 }
 

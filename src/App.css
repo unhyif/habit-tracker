@@ -1,38 +1,61 @@
+* {
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2.5rem;
+  padding: 0 5rem;
+}
+
 button {
   outline: none;
   border: 0;
   cursor: pointer;
   font: inherit;
+  background: skyblue;
+}
+
+input {
+  font: inherit;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .habits {
   padding: 0;
   list-style: none;
-  font-size: 2.5rem;
 }
 
 .habit {
   padding: 1rem;
 }
 
-.habit-count {
+.habit__count {
   background: pink;
 }
 
-.habit-button {
-  margin: 0 0.2rem;
+.btn {
+  margin: 0 0.3rem;
   color: white;
 }
 
-.habit-button:hover {
+.btn:hover {
   opacity: 0.7;
 }
 
-.habit-increase,
-.habit-decrease {
-  background: orange;
+.increaseBtn,
+.decreaseBtn {
+  background: palegreen;
 }
 
-.habit-delete {
-  background: red;
+.deleteBtn {
+  background: palevioletred;
 }
