@@ -3,6 +3,7 @@ import "./app.css";
 import Habits from "./components/habits"; // Import child components
 import Header from "./components/header";
 import HabitForm from "./components/habitForm";
+import SimpleHabit from "./components/simpleHabit";
 
 class App extends Component {
   state = {
@@ -73,14 +74,15 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        {/* 간단한 함수는 안 넘겨줘도 됨 */}
-        <Header
-          totalCount={this.state.habits.filter((item) => item.count > 0).length}
-        />
-        <HabitForm onAdd={this.handleAdd} />
-        <Habits habits={this.state.habits} handlers={this.handlers} />
-      </>
+      <SimpleHabit />
+      // <>
+      //   {/* 간단한 함수는 안 넘겨줘도 됨 */}
+      //   <Header
+      //     totalCount={this.state.habits.filter((item) => item.count > 0).length}
+      //   />
+      //   <HabitForm onAdd={this.handleAdd} />
+      //   <Habits habits={this.state.habits} handlers={this.handlers} />
+      // </>
     );
   }
 }
