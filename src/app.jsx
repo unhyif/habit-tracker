@@ -13,37 +13,40 @@ const App = () => {
   ];
   const [habits, setHabits] = useState(initialHabits);
 
-  // TODO
   // Callbacks
-  const handleAdd = (title) => {
-    setHabits([...habits, { id: Date.now(), title, count: 0 }]);
-  };
+  const handleAdd = useCallback((title) => {
+    setHabits((habits) => [...habits, { id: Date.now(), title, count: 0 }]);
+  }, []);
 
-  const handleIncrement = (habit) => {
-    const updatedHabits = [...habits];
-    const index = updatedHabits.indexOf(habit);
-    updatedHabits[index] = { ...habit, count: habit.count + 1 };
-    setHabits(updatedHabits);
-  };
+  const handleIncrement = useCallback((habit) => {
+    setHabits((habits) => {
+      const updatedHabits = [...habits];
+      const index = updatedHabits.indexOf(habit);
+      updatedHabits[index] = { ...habit, count: habit.count + 1 };
+      return updatedHabits;
+    });
+  }, []);
 
-  const handleDecrement = (habit) => {
+  const handleDecrement = useCallback((habit) => {
     if (!habit.count) return;
-    const updatedHabits = [...habits];
-    const index = updatedHabits.indexOf(habit);
-    updatedHabits[index] = { ...habit, count: habit.count - 1 };
-    setHabits(updatedHabits);
-  };
 
-  const handleDelete = (habit) => {
-    setHabits(habits.filter((item) => item !== habit));
-  };
+    setHabits((habits) => {
+      const updatedHabits = [...habits];
+      const index = updatedHabits.indexOf(habit);
+      updatedHabits[index] = { ...habit, count: habit.count - 1 };
+      return updatedHabits;
+    });
+  }, []);
 
-  const handleReset = () => {
-    const resetHabits = habits.map((item) =>
-      item.count > 0 ? { ...item, count: 0 } : item
+  const handleDelete = useCallback((habit) => {
+    setHabits((habits) => habits.filter((item) => item !== habit));
+  }, []);
+
+  const handleReset = useCallback(() => {
+    setHabits((habits) =>
+      habits.map((item) => (item.count > 0 ? { ...item, count: 0 } : item))
     );
-    setHabits(resetHabits);
-  };
+  }, []);
 
   return (
     <>

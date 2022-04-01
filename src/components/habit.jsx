@@ -1,18 +1,17 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 
-const Habit = (props) => {
-  console.log("habit");
+const Habit = memo((props) => {
+  const { habit } = props;
+
   // Callbacks
-  const onIncrement = () => props.onIncrement(props.habit);
-  const onDecrement = () => props.onDecrement(props.habit);
-  const onDelete = () => props.onDelete(props.habit);
-
-  const { title, count } = props.habit;
+  const onIncrement = () => props.onIncrement(habit);
+  const onDecrement = () => props.onDecrement(habit);
+  const onDelete = () => props.onDelete(habit);
 
   return (
     <li className="habit">
-      <span className="habit__title">{title}</span>
-      <span className="habit__count">{count}</span>
+      <span className="habit__title">{habit.title}</span>
+      <span className="habit__count">{habit.count}</span>
       <button className="btn increaseBtn" onClick={onIncrement}>
         +
       </button>
@@ -24,6 +23,6 @@ const Habit = (props) => {
       </button>
     </li>
   );
-};
+});
 
 export default Habit;

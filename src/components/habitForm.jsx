@@ -1,7 +1,6 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 
-const HabitForm = ({ onAdd }) => {
-  console.log("form");
+const HabitForm = memo(({ onAdd }) => {
   const inputRef = React.createRef();
 
   const handleSubmit = (e) => {
@@ -22,6 +21,6 @@ const HabitForm = ({ onAdd }) => {
       <button className="btn addBtn">Add</button>
     </form>
   );
-};
+});
 
 export default HabitForm;

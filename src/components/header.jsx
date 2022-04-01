@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+
 const Header = memo(({ totalCount }) => (
   <header>
     <h1 className="header__title">Habit Tracker</h1>
