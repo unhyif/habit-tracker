@@ -1,27 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import Habit from "./habit";
 
-class Habits extends Component {
-  render() {
-    const habits = this.props.habits.map((item) => (
-      <Habit
-        key={item.id}
-        habit={item}
-        onIncrement={this.props.onIncrement}
-        onDecrement={this.props.onDecrement}
-        onDelete={this.props.onDelete}
-      />
-    ));
+const Habits = ({ habits, onIncrement, onDecrement, onDelete, onReset }) => {
+  const habitItems = habits.map((item) => (
+    <Habit
+      key={item.id}
+      habit={item}
+      onIncrement={onIncrement}
+      onDecrement={onDecrement}
+      onDelete={onDelete}
+    />
+  ));
 
-    return (
-      <>
-        <ul className="habits">{habits}</ul>
-        <button className="btn resetBtn" onClick={this.props.onReset}>
-          Reset
-        </button>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <ul className="habits">{habitItems}</ul>
+      <button className="btn resetBtn" onClick={onReset}>
+        Reset
+      </button>
+    </>
+  );
+};
 
 export default Habits;
